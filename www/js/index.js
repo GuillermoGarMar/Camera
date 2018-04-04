@@ -35,6 +35,20 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+        //porcentaje de bateria
+      onBatteryStatus: function(status){
+    var td1 = document.getElementById('percent');
+        var porcentaje = status.level+"%";
+        var isPlugged="Conectado: Si";
+        level="Level: "+info.level+"%";
+        if(info.isPlugged){
+            isPlugged="Conectado: Si";
+        }else{
+            isPlugged="Conectado: No";
+        }
+        td1.innerHTML=porcentaje+","+isPlugged;    
+
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
