@@ -35,6 +35,24 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+        encerderCamara: function() {
+        pictureSource = navigator.camera.PictureSourceType;
+        destinationType = navigator.camera.DestinationType;
+
+        navigator.camera.getPicture(this.onPhotoDataSuccess, this.onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    },
+        onPhotoDataSuccess: function(imageData) {
+      console.log(imageData);
+      var smallImage = document.getElementById('smallImage');
+      smallImage.style.display = 'block';
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    },
+    onFail: function (message) {
+        navigator.notification.vibrate(500);
+        alert('Failed because: ' + message);
+    },
+
         //porcentaje de bateria
       onBatteryStatus: function(status){
     var td1 = document.getElementById('percent');
